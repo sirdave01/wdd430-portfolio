@@ -1,4 +1,4 @@
-import SkillCardList from '@/components/SkillCardList';
+import SkillCard from './SkillCard';
 
 interface Skill {
   skill: string;
@@ -14,11 +14,16 @@ export default function SkillList({ skills }: Skills) {
 
   return (
 
-    <section className="container mx-auto px-4 py-12">
+    <section className="grid gap-4 md:grid-cols-2">
 
-      <h2 className="text-3xl font-bold mb-6 text-center">My Skills</h2>
-
-      <SkillCardList skills={skills} />
+        {skills.map((skill, index) => (
+        <SkillCard
+          key={index}
+          skill={skill.skill}
+          level={skill.level}
+          description={skill.description}
+        />
+      ))}
 
     </section>
 
