@@ -1,16 +1,16 @@
 import ProjectList from '@/components/ProjectList';
 const projects = [
   {
-    title: 'E-Commerce Dashboard',
-    description: 'A full-stack Next.js app for managing products.',
-    technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    link: 'https://github.com/your-username/project1'
+    title: 'CARECONNECT API',
+    description: 'A Node.js API for identifying and managing user profiles in health fields.',
+    technologies: ['ExpressJS', 'NodeJS', 'MongoDB', 'Github Actions', 'Render'],
+    link: 'https://careconnect-api-a8af.onrender.com/'
   },
   {
-    title: 'Weather Application',
-    description: 'A React app that fetches and displays weather data.',
-    technologies: ['React', 'JavaScript', 'CSS'],
-    link: 'https://github.com/your-username/project2'
+    title: 'ByteHaven Identification API',
+    description: 'A Node.js API for identifying user profiles.',
+    technologies: ['ExpressJS', 'NodeJS', 'MongoDB', 'Github Actions', 'Render'],
+    link: 'https://bytehaven-identification-api.onrender.com/'
   }
 ];
 
