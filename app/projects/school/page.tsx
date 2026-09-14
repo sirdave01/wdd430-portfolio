@@ -1,8 +1,8 @@
 import ProjectList from '@/components/ProjectList';
-import { getProjects } from '../lib/projects-db';
+import { fetchProjects } from '../lib/fetch-projects';
 
-export default function SchoolProjectsPage() {
-  const projects = getProjects('school');
+export default async function SchoolProjectsPage() {
+  const projects = await fetchProjects('/api/projects?type=school');
 
   return (
     <main className="container mx-auto px-4 py-12">

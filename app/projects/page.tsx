@@ -1,8 +1,9 @@
 import ProjectList from '@/components/ProjectList';
-import { getProjects } from './lib/projects-db';
+import { fetchProjects } from './lib/fetch-projects';
 
-export default function ProjectsPage() {
-  const projects = getProjects();
+export default async function ProjectsPage() {
+  const projects = await fetchProjects('/api/projects');
+
   return (
     <main className="container mx-auto px-4 py-12">
       <h1 className="mb-8 text-4xl font-bold">Projects Overview</h1>

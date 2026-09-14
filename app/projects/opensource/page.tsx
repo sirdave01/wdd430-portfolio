@@ -1,8 +1,8 @@
 import ProjectList from '@/components/ProjectList';
-import { getProjects } from '../lib/projects-db';
+import { fetchProjects } from '../lib/fetch-projects';
 
-export default function OpenSourceProjectsPage() {
-  const projects = getProjects('opensource');
+export default async function OpenSourceProjectsPage() {
+  const projects = await fetchProjects('/api/projects?type=opensource');
 
   return (
     <main className="container mx-auto px-4 py-12">
