@@ -2,7 +2,6 @@
 
 "use client"; // this is a client component, so it can use state and effects
 
-import { link } from "fs/promises";
 import Link from "next/link";
 
 import { usePathname } from "next/navigation";
