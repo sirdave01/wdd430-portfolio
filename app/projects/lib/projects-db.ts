@@ -19,7 +19,7 @@ export const projects: Project[] = [
     },
     {
         id: 2,
-        title: 'ByteHaven Identification API',
+        title: "ByteHaven Identification API",
         description: 'A Node.js API for identifying user profiles.',
         type: 'opensource',
         technologies: ['ExpressJS', 'NodeJS', 'MongoDB', 'GitHub Actions', 'Render'],
@@ -38,6 +38,13 @@ export const projects: Project[] = [
         description: 'A platform for delivering online courses and tracking student progress.',
         type: 'school',
         technologies: ['React', 'NodeJS', 'ExpressJS', 'MongoDB'],
+    },
+    {
+        id: 5,
+        title: "AfriSplit",
+        description: "AfriSplit is a collaborative expense-sharing web application designed to simplify group finances. It eliminates the need for manual calculations or complex group chat discussions when splitting bills",
+        type: "opensource",
+        technologies: ["React", "NodeJS", "Pollar SDK", "Stellar", "TypeScript", "MongoDB", "Tailwind CSS"],
     },
 ];
 
