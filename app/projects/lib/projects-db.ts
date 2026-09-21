@@ -25,11 +25,10 @@ export async function getProjects(type?: string | null): Promise<Project[]> {
     }
 
     const { rows } = await sql<Project>`
-        
-        SELECT * FROM projects
-        WHERE type = ${type}
+        SELECT id, title, description, type, technologies, link
+        FROM projects
         ORDER BY id
-    ;`
+    `;
 
     return rows;
     
