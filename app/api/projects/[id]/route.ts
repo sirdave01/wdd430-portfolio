@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import {getProjectById} from "@/app/projects/lib/projects-db";
+import {getProjectbyId} from "@/app/projects/lib/projects-db";
 
 export async function GET(
 
@@ -21,7 +21,7 @@ export async function GET(
         
   }
 
-  const project = getProjectById(numericId);
+  const project = getProjectbyId(numericId);
 
     if (!project) {
       
