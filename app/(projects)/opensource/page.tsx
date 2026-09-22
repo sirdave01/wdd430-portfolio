@@ -1,5 +1,5 @@
 import ProjectList from '@/components/ProjectList';
-import { getProjects } from '../lib/projects-db';
+import { getProjects } from '../../projects/lib/projects-db';
 
 export default async function OpenSourceProjectsPage() {
   const projects = await getProjects('opensource');
