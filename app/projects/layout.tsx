@@ -9,9 +9,9 @@ export default function ProjectsLayout({ children }: { children: React.ReactNode
       <nav>
             <Link href="/projects">Overview</Link> | {" "}
 
-            <Link href="/projects/opensource">Open Source</Link> | {" "}
+            <Link href="/opensource">Open Source</Link> | {" "}
 
-            <Link href="/projects/school">School</Link> | {" "}
+            <Link href="/school">School</Link> | {" "}
 
             <Link href="/projects/settings">Settings</Link>
 
