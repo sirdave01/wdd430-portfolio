@@ -1,7 +1,9 @@
-// how to write a projectcardprops
+import Link from 'next/link';
+import { deleteProject } from '@/app/projects/lib/actions';
 
-// defining the expected props for the component, providing type safety and documentation.
 interface ProjectCardProps {
+
+    id?: number;
 
   title: string;
 
@@ -13,7 +15,7 @@ interface ProjectCardProps {
 
 }
 
-export default function ProjectCard({ title, description, technologies, link }: ProjectCardProps) {
+export default function ProjectCard({ id, title, description, technologies, link }: ProjectCardProps) {
 
     return (
 
@@ -24,6 +26,21 @@ export default function ProjectCard({ title, description, technologies, link }: 
             <p className="text-gray-700 mb-3">{description}</p>
 
             <p className="text-sm text-gray-600"><strong>Technologies:</strong> {technologies.join(', ')}</p>
+
+            {id !== undefined && (
+                <div className="mt-4 flex gap-3">
+                    <Link href={`/projects/${id}/edit`} className="text-blue-600 hover:underline">
+                        Edit
+                    </Link>
+
+                    <form action={deleteProject}>
+                        <input type="hidden" name="id" value={id} />
+                        <button type="submit" className="text-red-600 hover:underline">
+                            Delete
+                        </button>
+                    </form>
+                </div>
+            )}
 
             {link && (
                 <p className="mt-2">
