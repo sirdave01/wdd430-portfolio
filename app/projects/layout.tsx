@@ -15,6 +15,10 @@ export default function ProjectsLayout({ children }: { children: React.ReactNode
 
             <Link href="/projects/settings">Settings</Link>
 
+            | {" "}
+
+            <Link href="/projects/create">Create Project</Link>
+
         </nav>
           
         {children}

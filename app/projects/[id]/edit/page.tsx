@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+import ProjectForm from '../../create/ProjectForm';
 import { updateProject } from '../../lib/actions';
 import { getProjectbyId } from '../../lib/projects-db';
 
@@ -27,27 +28,19 @@ export default async function EditProjectPage({
   return (
     <main className="container mx-auto px-4 py-12">
       <h1 className="mb-8 text-4xl font-bold">Edit Project</h1>
-
-      <form action={updateProjectWithId} className="flex max-w-xl flex-col gap-4">
-        <label htmlFor="title">Title</label>
-        <input id="title" name="title" defaultValue={project.title} required />
-
-        <label htmlFor="description">Description</label>
-        <textarea id="description" name="description" defaultValue={project.description} required />
-
-        <label htmlFor="technologies">Technologies (comma-separated)</label>
-        <input
-          id="technologies"
-          name="technologies"
-          defaultValue={project.technologies.join(', ')}
-          required
-        />
-
-        <div className="flex gap-4">
-          <button type="submit">Update Project</button>
-          <Link href="/projects">Cancel</Link>
-        </div>
-      </form>
+      <ProjectForm
+        action={updateProjectWithId}
+        submitLabel="Update Project"
+        initialValues={{
+          title: project.title,
+          description: project.description,
+          technologies: project.technologies.join(', '),
+          yearCompleted: project.yearCompleted,
+        }}
+      />
+      <Link href="/projects" className="mt-4 inline-block text-blue-600 hover:underline">
+        Cancel
+      </Link>
     </main>
   );
 }

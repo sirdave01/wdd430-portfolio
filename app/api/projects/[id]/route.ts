@@ -21,7 +21,7 @@ export async function GET(
         
   }
 
-  const project = getProjectbyId(numericId);
+  const project = await getProjectbyId(numericId);
 
     if (!project) {
       

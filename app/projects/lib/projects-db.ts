@@ -7,6 +7,7 @@ export interface Project{
     description: string;
     type: 'opensource' | 'school';
     technologies: string[];
+    yearCompleted: number;
     link?: string;
 }
 
@@ -15,7 +16,7 @@ export async function getProjects(type?: string | null): Promise<Project[]> {
     if (type) {
         
         const { rows } = await sql<Project>`
-            SELECT id, title, description, type, technologies, link
+            SELECT id, title, description, type, technologies, year_completed AS "yearCompleted", link
             FROM projects
             WHERE type = ${type}
             ORDER BY id
@@ -25,7 +26,7 @@ export async function getProjects(type?: string | null): Promise<Project[]> {
     }
 
     const { rows } = await sql<Project>`
-        SELECT id, title, description, type, technologies, link
+        SELECT id, title, description, type, technologies, year_completed AS "yearCompleted", link
         FROM projects
         ORDER BY id
     `;
@@ -43,7 +44,7 @@ export async function getFilteredProjects(
     const search = `%${query.trim()}%`;
 
     const { rows } = await sql<Project>`
-        SELECT id, title, description, type, technologies, link
+        SELECT id, title, description, type, technologies, year_completed AS "yearCompleted", link
         FROM projects
         WHERE title ILIKE ${search}
            OR description ILIKE ${search}
@@ -67,7 +68,7 @@ export async function fetchFilteredProjects(query: string, currentPage: number):
 
     const { rows } = await sql<Project>`
     
-    SELECT id, title, description, type, technologies, link
+    SELECT id, title, description, type, technologies, year_completed AS "yearCompleted", link
     
     FROM projects
     
@@ -108,8 +109,8 @@ export async function getProjectbyId(id: number): Promise<Project | null>  {
 
     const { rows } = await sql<Project>`
     
-        SELECT * FROM projects
-        
+        SELECT id, title, description, type, technologies, year_completed AS "yearCompleted", link
+        FROM projects
         WHERE id = ${id}
         
     `;
