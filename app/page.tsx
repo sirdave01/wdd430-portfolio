@@ -1,4 +1,11 @@
+import type { Metadata } from 'next';
 import ProjectList from '@/components/ProjectList';
+
+export const metadata: Metadata = {
+  title: 'My Portfolio',
+  description: 'Explore my web development projects and full-stack applications.',
+};
+
 const projects = [
   {
     title: 'CARECONNECT API',

@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { redirect } from 'next/navigation';
 import { auth } from '@/auth';
 import ProjectList from '@/components/ProjectList';
 import { getProjects } from '@/app/projects/lib/projects-db';
+
+export const metadata: Metadata = {
+    title: 'Manage Projects',
+    description: 'Manage the projects displayed in the portfolio.',
+};
 
 export default async function SettingsProjectsPage() {
     const session = await auth();

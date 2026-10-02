@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import ProjectForm from './ProjectForm';
 import { createProject } from '../lib/actions';
+
+export const metadata: Metadata = {
+  title: 'Create Project',
+  description: 'Add a web development project to the portfolio.',
+};
 
 export default function Page() {
   return (

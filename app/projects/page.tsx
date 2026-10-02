@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import ProjectList from "@/components/ProjectList";
 import { ProjectSearch } from "@/components/ProjectSearch";
 import Pagination from "@/components/Pagination";
@@ -6,6 +7,11 @@ import {
   fetchFilteredProjects,
   fetchProjectsPages,
 } from "./lib/projects-db";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: "Browse and search web development projects in my portfolio.",
+};
 
 export const dynamic = "force-dynamic";
 

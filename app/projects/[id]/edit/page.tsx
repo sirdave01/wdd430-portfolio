@@ -1,9 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import ProjectForm from '../../create/ProjectForm';
 import { updateProject } from '../../lib/actions';
 import { getProjectbyId } from '../../lib/projects-db';
+
+export const metadata: Metadata = {
+  title: 'Edit Project',
+  description: 'Update a project in the portfolio.',
+};
 
 export default async function EditProjectPage({
   params,

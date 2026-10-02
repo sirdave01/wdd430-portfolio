@@ -1,8 +1,14 @@
+import type { Metadata } from 'next';
 import ProjectList from '@/components/ProjectList';
 import ProjectCardSkeleton from '@/components/ProjectCardSkeleton';
 import { getProjects } from '../../projects/lib/projects-db';
 import type { Project } from '../../projects/lib/projects-db';
 import { Suspense } from 'react';
+
+export const metadata: Metadata = {
+  title: 'School Projects',
+  description: 'Explore web development projects completed as part of my coursework.',
+};
 
 // Project data comes from Postgres and must be requested for each visit.
 export const dynamic = 'force-dynamic';

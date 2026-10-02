@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import SkillList from '@/components/SkillCardList';
+
+export const metadata: Metadata = {
+  title: 'About',
+  description: 'Learn about my web development skills and experience.',
+};
 
 const skills = [
   {
