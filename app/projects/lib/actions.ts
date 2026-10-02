@@ -4,6 +4,32 @@ import { z } from 'zod';
 import { sql } from '@vercel/postgres';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { auth, signIn } from '@/auth';
+import { AuthError } from 'next-auth';
+
+async function requireOwnerSession() {
+  const session = await auth();
+  if (!session?.user) throw new Error('Not authenticated');
+}
+
+export async function authenticate(
+  prevState: string | undefined,
+  formData: FormData,
+) {
+  try {
+    await signIn('credentials', formData);
+  } catch (error) {
+    if (error instanceof AuthError) {
+      switch (error.type) {
+        case 'CredentialsSignin':
+          return 'Invalid email or password.';
+        default:
+          return 'Something went wrong.';
+      }
+    }
+    throw error; // re-throw so Next.js handles redirects correctly
+  }
+}
 
 const currentYear = new Date().getFullYear();
 
@@ -67,6 +93,8 @@ export async function createProject(
   _previousState: State,
   formData: FormData,
 ): Promise<State> {
+  await requireOwnerSession();
+
   const validationState = getValidationState(formData);
   if (validationState) return validationState;
 
@@ -96,6 +124,8 @@ export async function updateProject(
   _previousState: State,
   formData: FormData,
 ): Promise<State> {
+  await requireOwnerSession();
+
   const validationState = getValidationState(formData);
   if (validationState) return validationState;
 
@@ -122,6 +152,8 @@ export async function updateProject(
 }
 
 export async function deleteProject(formData: FormData) {
+  await requireOwnerSession();
+
   const id = Number(formData.get('id'));
 
   if (!Number.isInteger(id) || id <= 0) {

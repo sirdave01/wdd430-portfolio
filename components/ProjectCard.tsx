@@ -13,9 +13,11 @@ interface ProjectCardProps {
 
   link?: string;
 
+    showActions?: boolean;
+
 }
 
-export default function ProjectCard({ id, title, description, technologies, link }: ProjectCardProps) {
+export default function ProjectCard({ id, title, description, technologies, link, showActions = false }: ProjectCardProps) {
 
     return (
 
@@ -27,7 +29,7 @@ export default function ProjectCard({ id, title, description, technologies, link
 
             <p className="text-sm text-gray-600"><strong>Technologies:</strong> {technologies.join(', ')}</p>
 
-            {id !== undefined && (
+            {showActions && id !== undefined && (
                 <div className="mt-4 flex gap-3">
                     <Link href={`/projects/${id}/edit`} className="text-blue-600 hover:underline">
                         Edit

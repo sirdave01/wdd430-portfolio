@@ -6,11 +6,10 @@ export default function ProjectsGroupLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <>
-      <nav className="container mx-auto flex gap-4 px-4 py-4">
-        <Link href="/projects">Overview</Link>
-        <Link href="/opensource">Open Source</Link>
-        <Link href="/school">School</Link>
-        <Link href="/projects/settings">Settings</Link>
+      <nav aria-label="Project categories" className="container mx-auto flex flex-wrap gap-x-4 gap-y-2 px-4 py-4">
+        <Link href="/projects" className="hover:underline">Overview</Link>
+        <Link href="/opensource" className="hover:underline">Open Source</Link>
+        <Link href="/school" className="hover:underline">School</Link>
       </nav>
       {children}
     </>
