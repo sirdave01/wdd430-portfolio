@@ -21,11 +21,11 @@ Open [https://wdd430-portfolio-mu-indol.vercel.app/](https://wdd430-portfolio-mu
 Auth.js uses `AUTH_SECRET`; generate it locally with `npx auth secret`. The owner-only credentials provider also requires these entries in `.env.local`:
 
 ```env
-OWNER_EMAIL=you@example.com
-OWNER_PASSWORD_HASH=your-bcrypt-hash
+AUTH_ADMIN_EMAIL=you@example.com
+AUTH_ADMIN_PASSWORD_HASH=your-bcrypt-hash
 ```
 
-Generate the hash with `node -e "require('bcryptjs').hash('your-password', 12).then(console.log)"` and replace the example values. Keep `.env.local` private. The `/projects/settings`, `/projects/create`, and `/projects/[id]/edit` routes and all project mutations require an authenticated owner session; public project browsing stays read-only.
+Generate the hash with `node -e "require('bcryptjs').hash('your-password', 12).then(console.log)"` and replace the example values. Keep `.env.local` private. The previous `OWNER_EMAIL` and `OWNER_PASSWORD_HASH` names remain supported for existing setups. The `/projects/settings`, `/projects/create`, and `/projects/[id]/edit` routes and all project mutations require an authenticated owner session; public project browsing stays read-only.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

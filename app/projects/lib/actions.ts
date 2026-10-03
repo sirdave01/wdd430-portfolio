@@ -12,23 +12,26 @@ async function requireOwnerSession() {
   if (!session?.user) throw new Error('Not authenticated');
 }
 
-export async function authenticate(
-  prevState: string | undefined,
-  formData: FormData,
-) {
-  try {
-    await signIn('credentials', formData);
-  } catch (error) {
-    if (error instanceof AuthError) {
-      switch (error.type) {
-        case 'CredentialsSignin':
-          return 'Invalid email or password.';
-        default:
-          return 'Something went wrong.';
-      }
+export async function authenticate(_previousState: string | undefined, formData: FormData): Promise<string | undefined> {
+    const rawCallbackUrl = formData.get("callbackUrl");
+    const callbackUrl = typeof rawCallbackUrl === "string" && rawCallbackUrl.startsWith("/") && !rawCallbackUrl.startsWith("//")
+        ? rawCallbackUrl
+        : "/projects/create";
+
+    try {
+        await signIn("credentials", {
+            email: formData.get("email"),
+            password: formData.get("password"),
+            redirectTo: callbackUrl,
+        });
+    } catch (error) {
+        if (error instanceof AuthError) {
+            return error.type === "CredentialsSignin"
+                ? "Invalid email or password."
+                : "Unable to sign in. Please try again.";
+        }
+        throw error;
     }
-    throw error; // re-throw so Next.js handles redirects correctly
-  }
 }
 
 const currentYear = new Date().getFullYear();

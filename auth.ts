@@ -16,8 +16,13 @@ export const { auth, signIn, signOut } = NextAuth({
         if (!parsed.success) return null;
 
         const { email, password } = parsed.data;
-        const ownerEmail = process.env.OWNER_EMAIL?.trim().toLowerCase();
-        const ownerPasswordHash = process.env.OWNER_PASSWORD_HASH;
+        const ownerEmail = (
+          process.env.AUTH_ADMIN_EMAIL ?? process.env.OWNER_EMAIL
+        )
+          ?.trim()
+          .toLowerCase();
+        const ownerPasswordHash =
+          process.env.AUTH_ADMIN_PASSWORD_HASH ?? process.env.OWNER_PASSWORD_HASH;
 
         if (!ownerEmail || !ownerPasswordHash || email.toLowerCase() !== ownerEmail) {
           return null;
