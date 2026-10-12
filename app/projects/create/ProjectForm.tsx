@@ -16,6 +16,7 @@ type ProjectFormProps = {
     description?: string;
     technologies?: string;
     yearCompleted?: number;
+    link?: string;
   };
   submitLabel: string;
 };
@@ -121,6 +122,29 @@ export default function ProjectForm({
         />
         <div id="yearCompleted-error" aria-live="polite" aria-atomic="true">
           {state.errors?.yearCompleted?.map((error) => (
+            <p key={error} className="mt-1 text-sm text-red-600">
+              {error}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="link" className="mb-2 block text-sm font-medium text-slate-700">
+          Project Link (optional)
+        </label>
+        <input
+          id="link"
+          name="link"
+          type="url"
+          placeholder="https://example.com"
+          defaultValue={initialValues.link}
+          aria-describedby="link-error"
+          aria-invalid={state.errors?.link ? true : undefined}
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+        />
+        <div id="link-error" aria-live="polite" aria-atomic="true">
+          {state.errors?.link?.map((error) => (
             <p key={error} className="mt-1 text-sm text-red-600">
               {error}
             </p>

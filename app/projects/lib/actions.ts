@@ -14,9 +14,19 @@ async function requireOwnerSession() {
 
 export async function authenticate(_previousState: string | undefined, formData: FormData): Promise<string | undefined> {
     const rawCallbackUrl = formData.get("callbackUrl");
-    const callbackUrl = typeof rawCallbackUrl === "string" && rawCallbackUrl.startsWith("/") && !rawCallbackUrl.startsWith("//")
-        ? rawCallbackUrl
-        : "/projects/create";
+  let callbackUrl = "/projects/create";
+  if (typeof rawCallbackUrl === "string") {
+    try {
+      const parsedCallbackUrl = new URL(rawCallbackUrl);
+      if (parsedCallbackUrl.protocol === "http:" || parsedCallbackUrl.protocol === "https:") {
+        callbackUrl = `${parsedCallbackUrl.pathname}${parsedCallbackUrl.search}${parsedCallbackUrl.hash}`;
+      }
+    } catch {
+      if (rawCallbackUrl.startsWith("/") && !rawCallbackUrl.startsWith("//")) {
+        callbackUrl = rawCallbackUrl;
+      }
+    }
+  }
 
     try {
         await signIn("credentials", {
@@ -40,6 +50,12 @@ const ProjectFormSchema = z.object({
   title: z.string().trim().min(3, 'Title must be at least 3 characters.'),
   description: z.string().trim().min(20, 'Description must be at least 20 characters.'),
   technologies: z.string().trim().min(2, 'Add at least one technology.'),
+  link: z
+    .string()
+    .trim()
+    .url('Enter a valid project URL.')
+    .refine((value) => /^https?:\/\//i.test(value), 'Use an http or https URL.')
+    .optional(),
   yearCompleted: z.coerce
     .number()
     .int('Year must be a whole number.')
@@ -52,6 +68,7 @@ export type State = {
     title?: string[];
     description?: string[];
     technologies?: string[];
+    link?: string[];
     yearCompleted?: string[];
   };
   message?: string | null;
@@ -62,6 +79,7 @@ function validateProjectForm(formData: FormData) {
     title: formData.get('title'),
     description: formData.get('description'),
     technologies: formData.get('technologies'),
+    link: formData.get('link') || undefined,
     yearCompleted: formData.get('yearCompleted'),
   });
 }
@@ -106,12 +124,12 @@ export async function createProject(
     return { message: 'Please correct the highlighted fields.' };
   }
 
-  const { title, description, technologies, yearCompleted } = validatedFields.data;
+  const { title, description, technologies, yearCompleted, link } = validatedFields.data;
 
   try {
     await sql`
-      INSERT INTO projects (title, description, technologies, year_completed)
-      VALUES (${title}, ${description}, ${toPostgresArray(parseTechnologies(technologies))}, ${yearCompleted})
+      INSERT INTO projects (title, description, technologies, year_completed, link)
+      VALUES (${title}, ${description}, ${toPostgresArray(parseTechnologies(technologies))}, ${yearCompleted}, ${link ?? null})
     `;
   } catch (error) {
     console.error('Error creating project:', error);
@@ -137,12 +155,12 @@ export async function updateProject(
     return { message: 'Please correct the highlighted fields.' };
   }
 
-  const { title, description, technologies, yearCompleted } = validatedFields.data;
+  const { title, description, technologies, yearCompleted, link } = validatedFields.data;
 
   try {
     await sql`
       UPDATE projects
-      SET title = ${title}, description = ${description}, technologies = ${toPostgresArray(parseTechnologies(technologies))}, year_completed = ${yearCompleted}
+      SET title = ${title}, description = ${description}, technologies = ${toPostgresArray(parseTechnologies(technologies))}, year_completed = ${yearCompleted}, link = ${link ?? null}
       WHERE id = ${id}
     `;
   } catch (error) {

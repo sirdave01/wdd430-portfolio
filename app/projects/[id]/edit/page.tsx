@@ -42,6 +42,7 @@ export default async function EditProjectPage({
           description: project.description,
           technologies: project.technologies.join(', '),
           yearCompleted: project.yearCompleted,
+          link: project.link ?? '',
         }}
       />
       <Link href="/projects" className="mt-4 inline-block text-blue-600 hover:underline">

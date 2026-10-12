@@ -11,7 +11,7 @@ interface ProjectCardProps {
 
   technologies: string[];
 
-  link?: string;
+    link?: string | null;
 
     showActions?: boolean;
 

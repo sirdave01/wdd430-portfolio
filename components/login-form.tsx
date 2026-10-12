@@ -3,7 +3,7 @@
 import { useActionState } from 'react';
 import { authenticate } from '@/app/projects/lib/actions';
 
-export function LoginForm() {
+export function LoginForm({ callbackUrl }: { callbackUrl?: string }) {
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
     undefined,
@@ -11,6 +11,7 @@ export function LoginForm() {
 
   return (
     <form action={formAction} className="flex flex-col gap-5">
+      {callbackUrl && <input type="hidden" name="callbackUrl" value={callbackUrl} />}
       <div className="min-w-0">
         <label htmlFor="email" className="mb-2 block text-sm font-semibold text-slate-700">
           Email

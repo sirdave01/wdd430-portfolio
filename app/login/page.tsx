@@ -6,7 +6,14 @@ export const metadata: Metadata = {
   description: 'Sign in to manage your portfolio projects.',
 };
 
-export default function LoginPage() {
+type LoginPageProps = {
+  searchParams: Promise<{ callbackUrl?: string | string[] }>;
+};
+
+export default async function LoginPage({ searchParams }: LoginPageProps) {
+  const rawCallbackUrl = (await searchParams).callbackUrl;
+  const callbackUrl = typeof rawCallbackUrl === 'string' ? rawCallbackUrl : undefined;
+
   return (
     <main className="flex min-h-[70svh] items-center justify-center bg-slate-50 px-4 py-12 sm:px-6 sm:py-16">
       <section
@@ -21,7 +28,7 @@ export default function LoginPage() {
             Sign in to manage your portfolio projects.
           </p>
         </div>
-        <LoginForm />
+        <LoginForm callbackUrl={callbackUrl} />
       </section>
     </main>
   );
