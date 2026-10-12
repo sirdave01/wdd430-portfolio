@@ -47,6 +47,7 @@ export async function authenticate(_previousState: string | undefined, formData:
 const currentYear = new Date().getFullYear();
 
 const ProjectFormSchema = z.object({
+  type: z.enum(['school', 'opensource']),
   title: z.string().trim().min(3, 'Title must be at least 3 characters.'),
   description: z.string().trim().min(20, 'Description must be at least 20 characters.'),
   technologies: z.string().trim().min(2, 'Add at least one technology.'),
@@ -65,6 +66,7 @@ const ProjectFormSchema = z.object({
 
 export type State = {
   errors?: {
+    type?: string[];
     title?: string[];
     description?: string[];
     technologies?: string[];
@@ -76,6 +78,7 @@ export type State = {
 
 function validateProjectForm(formData: FormData) {
   return ProjectFormSchema.safeParse({
+    type: formData.get('type'),
     title: formData.get('title'),
     description: formData.get('description'),
     technologies: formData.get('technologies'),
@@ -124,12 +127,12 @@ export async function createProject(
     return { message: 'Please correct the highlighted fields.' };
   }
 
-  const { title, description, technologies, yearCompleted, link } = validatedFields.data;
+  const { type, title, description, technologies, yearCompleted, link } = validatedFields.data;
 
   try {
     await sql`
-      INSERT INTO projects (title, description, technologies, year_completed, link)
-      VALUES (${title}, ${description}, ${toPostgresArray(parseTechnologies(technologies))}, ${yearCompleted}, ${link ?? null})
+      INSERT INTO projects (title, description, type, technologies, year_completed, link)
+      VALUES (${title}, ${description}, ${type}, ${toPostgresArray(parseTechnologies(technologies))}, ${yearCompleted}, ${link ?? null})
     `;
   } catch (error) {
     console.error('Error creating project:', error);
@@ -155,12 +158,12 @@ export async function updateProject(
     return { message: 'Please correct the highlighted fields.' };
   }
 
-  const { title, description, technologies, yearCompleted, link } = validatedFields.data;
+  const { type, title, description, technologies, yearCompleted, link } = validatedFields.data;
 
   try {
     await sql`
       UPDATE projects
-      SET title = ${title}, description = ${description}, technologies = ${toPostgresArray(parseTechnologies(technologies))}, year_completed = ${yearCompleted}, link = ${link ?? null}
+      SET title = ${title}, description = ${description}, type = ${type}, technologies = ${toPostgresArray(parseTechnologies(technologies))}, year_completed = ${yearCompleted}, link = ${link ?? null}
       WHERE id = ${id}
     `;
   } catch (error) {

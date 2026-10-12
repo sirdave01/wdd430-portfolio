@@ -1,11 +1,13 @@
 // switching to SQL DB on NEON - PostgreSQL (Vercel)
 
 import { sql } from "@vercel/postgres";
+export type ProjectType = 'opensource' | 'school';
+
 export interface Project{
     id: number;
     title: string;
     description: string;
-    type: 'opensource' | 'school';
+    type: ProjectType;
     technologies: string[];
     yearCompleted: number;
     link?: string | null;

@@ -3,6 +3,7 @@
 import { useActionState } from 'react';
 
 import type { State } from '@/app/projects/lib/actions';
+import type { ProjectType } from '@/app/projects/lib/projects-db';
 
 type ProjectFormAction = (
   previousState: State,
@@ -12,6 +13,7 @@ type ProjectFormAction = (
 type ProjectFormProps = {
   action: ProjectFormAction;
   initialValues?: {
+    type?: ProjectType;
     title?: string;
     description?: string;
     technologies?: string;
@@ -35,6 +37,32 @@ export default function ProjectForm({
       action={formAction}
       className="flex max-w-xl flex-col gap-4 rounded-lg border border-slate-200 bg-white p-6 shadow-sm"
     >
+      <div>
+        <label htmlFor="type" className="mb-2 block text-sm font-medium text-slate-700">
+          Project Type
+        </label>
+        <select
+          id="type"
+          name="type"
+          defaultValue={initialValues.type ?? ''}
+          aria-describedby="type-error"
+          aria-invalid={state.errors?.type ? true : undefined}
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          required
+        >
+          <option value="" disabled>Select a project type</option>
+          <option value="school">School</option>
+          <option value="opensource">Open Source</option>
+        </select>
+        <div id="type-error" aria-live="polite" aria-atomic="true">
+          {state.errors?.type?.map((error) => (
+            <p key={error} className="mt-1 text-sm text-red-600">
+              {error}
+            </p>
+          ))}
+        </div>
+      </div>
+
       <div>
         <label htmlFor="title" className="mb-2 block text-sm font-medium text-slate-700">
           Project Title

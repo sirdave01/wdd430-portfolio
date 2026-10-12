@@ -38,6 +38,7 @@ export default async function EditProjectPage({
         action={updateProjectWithId}
         submitLabel="Update Project"
         initialValues={{
+          type: project.type,
           title: project.title,
           description: project.description,
           technologies: project.technologies.join(', '),
