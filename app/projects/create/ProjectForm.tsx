@@ -47,7 +47,7 @@ export default function ProjectForm({
           defaultValue={initialValues.type ?? ''}
           aria-describedby="type-error"
           aria-invalid={state.errors?.type ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         >
           <option value="" disabled>Select a project type</option>
@@ -74,7 +74,7 @@ export default function ProjectForm({
           defaultValue={initialValues.title}
           aria-describedby="title-error"
           aria-invalid={state.errors?.title ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
         <div id="title-error" aria-live="polite" aria-atomic="true">
@@ -97,7 +97,7 @@ export default function ProjectForm({
           defaultValue={initialValues.description}
           aria-describedby="description-error"
           aria-invalid={state.errors?.description ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
         <div id="description-error" aria-live="polite" aria-atomic="true">
@@ -120,7 +120,7 @@ export default function ProjectForm({
           defaultValue={initialValues.technologies}
           aria-describedby="technologies-error"
           aria-invalid={state.errors?.technologies ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
         <div id="technologies-error" aria-live="polite" aria-atomic="true">
@@ -145,7 +145,7 @@ export default function ProjectForm({
           defaultValue={initialValues.yearCompleted}
           aria-describedby="yearCompleted-error"
           aria-invalid={state.errors?.yearCompleted ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
           required
         />
         <div id="yearCompleted-error" aria-live="polite" aria-atomic="true">
@@ -169,7 +169,7 @@ export default function ProjectForm({
           defaultValue={initialValues.link}
           aria-describedby="link-error"
           aria-invalid={state.errors?.link ? true : undefined}
-          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+          className="block w-full rounded-md border border-slate-300 px-3 py-2 text-sm text-black outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
         />
         <div id="link-error" aria-live="polite" aria-atomic="true">
           {state.errors?.link?.map((error) => (
