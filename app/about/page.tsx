@@ -24,12 +24,12 @@ const skills = [
   },
   {
     skill: 'Express',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Experience with Express.js and its ecosystem, including middleware and routing.'
   },
   {
     skill: 'Node.js',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Familiar with Node.js for building server-side applications and APIs.'
   },
   {
@@ -44,17 +44,17 @@ const skills = [
   },
   {
     skill: 'React',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Experience with React for building dynamic and responsive user interfaces.'
   },
   {
     skill: 'Next.js',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Experience with Next.js for building server-side rendered and static web applications.'
   },
   {
     skill: 'TypeScript',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Experience with TypeScript for building scalable and maintainable web applications.'
   },
   {
@@ -64,7 +64,7 @@ const skills = [
   },
   {
     skill: 'Tailwind CSS',
-    level: 'Intermediate',
+    level: 'Advanced',
     description: 'Experience with Tailwind CSS for building responsive and customizable user interfaces.'
   }
 ];
