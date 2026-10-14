@@ -79,11 +79,26 @@ export default function About() {
 
         <h2 className="text-3xl font-bold mb-4">About Me</h2>
 
-        <p className="text-lg text-white-700">
+        {/* create a nice divider - not a straight line- between this paragraph and the previous one  */}
+        <hr className="relative my-8 overflow-visible border-t border-gray-300 after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-black after:px-3 after:text-gray-400 after:content-['✦']" />
 
-          This about page shares more information about my background and work.
+           <p className="text-lg text-white-700">
+
+          I am a Certified full-stack developer with experience in building scalable and efficient web applications using modern technologies.
+
+          I build web applications that are responsive, user-friendly, and optimized for performance. I am passionate about learning new technologies and improving my skills to deliver high-quality solutions.
 
         </p>
+
+        {/* create a nice divider between this paragraph and the previous one */}
+        <hr className="my-8 border-t-4 border-dotted border-gray-400" />
+        <p className="text-lg text-white-700">
+
+          Below shares more information about my skills, background, and work.
+
+        </p>
+
+        <hr className="my-8 h-1.5 rounded-full border-0 bg-gray-300" />
 
       </section>
 

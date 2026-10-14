@@ -33,7 +33,7 @@ export default function Home() {
         
         <p className="text-lg text-white">
           
-          I am a full-stack developer learning Next.js and React. Here are some of my recent projects.
+          I am a Certified full-stack developer, I work with modern web technologies to build scalable and efficient applications. Here are some of my recent projects.
           
         </p>
         
