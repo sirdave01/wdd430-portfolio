@@ -1,12 +1,5 @@
 import ProjectCard from './ProjectCard';
-
-interface Project {
-  id?: number;
-  title: string;
-  description: string;
-  technologies: string[];
-  link?: string | null;
-}
+import type { Project } from '@/app/projects/lib/projects-db';
 
 interface ProjectListProps {
   projects: Project[];
@@ -15,10 +8,10 @@ interface ProjectListProps {
 
 export default function ProjectList({ projects, showActions = false }: ProjectListProps) {
   return (
-    <section className="grid gap-4 md:grid-cols-2">
-      {projects.map((project, index) => (
+    <section className="grid gap-6 md:grid-cols-2">
+      {projects.map((project) => (
         <ProjectCard
-          key={project.id ?? `${project.title}-${index}`}
+          key={project.id}
           showActions={showActions}
           {...project}
         />
