@@ -35,9 +35,11 @@ export default function ProjectCard({
         <h3 className="text-xl font-bold mb-2 text-blue-700">{title}</h3>
         <p className="text-gray-700 mb-3 text-sm line-clamp-3">{description}</p>
 
-        <p className="text-sm text-gray-600 mb-4">
-          <strong>Technologies:</strong> {technologies.join(', ')}
-        </p>
+        {technologies.length > 0 && (
+          <p className="text-sm text-gray-600 mb-4">
+            <strong>Technologies:</strong> {technologies.join(', ')}
+          </p>
+        )}
 
         {link && (
           <a

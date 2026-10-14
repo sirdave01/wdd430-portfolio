@@ -2,7 +2,11 @@ import ProjectCard from './ProjectCard';
 import type { Project } from '@/app/projects/lib/projects-db';
 
 interface ProjectListProps {
-  projects: Project[];
+  projects: Array<
+    Pick<Project, 'id' | 'title' | 'description' | 'link' | 'image'> & {
+      technologies?: string[];
+    }
+  >;
   showActions?: boolean;
 }
 
