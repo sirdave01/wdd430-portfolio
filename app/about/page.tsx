@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import SkillList from '@/components/SkillCardList';
 
 export const metadata: Metadata = {
@@ -78,9 +79,11 @@ export default function About() {
         
         {/* Profile Picture */}
         <div className="flex-shrink-0">
-          <img
+          <Image
             src="/founder.jpeg"   
             alt="Osigwe Uchechukwu DavidCaleb"
+            width={192}
+            height={192}
             className="w-48 h-48 rounded-full object-cover border-4 border-blue-600 shadow-lg"
           />
         </div>
